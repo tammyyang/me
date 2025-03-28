@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tammy Yang | Data Scientist & Entrepreneur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --bright-pink: #FF1694;
+            --yellow: #FFFF00;
+            --light-blue: #ADD8E6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        header {
+            background-color: var(--black);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bright-pink);
+            letter-spacing: 1px;
+        }
+        
+        .menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .menu-item {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .menu-item:hover {
+            color: var(--bright-pink);
+        }
+        
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--bright-pink);
+            transition: width 0.3s;
+        }
+        
+        .menu-item:hover::after {
+            width: 100%;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon-link {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .icon-link:hover {
+            color: var(--bright-pink);
+        }
+        
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--black) 40%, var(--black) 100%);
+            color: var(--white);
+        }
+        
+        .hero-content {
+            width: 60%;
+            z-index: 1;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40%;
+            height: 100%;
+            background-image: url('/api/placeholder/500/750');
+            background-size: cover;
+            background-position: center;
+            mask-image: linear-gradient(to right, transparent, var(--black) 40%);
+            -webkit-mask-image: linear-gradient(to right, transparent, var(--black) 40%);
+        }
+        
+        .name {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            color: var(--bright-pink);
+        }
+        
+        .job-title {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        
+        .hero-bio {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--bright-pink);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 22, 148, 0.3);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--bright-pink);
+        }
+        
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .tab.active {
+            color: var(--bright-pink);
+        }
+        
+        .tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--bright-pink);
+            transition: width 0.3s;
+        }
+        
+        .tab.active::after {
+            width: 80%;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--light-blue);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: 50%;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+            padding-left: 50%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--bright-pink);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+        }
+        
+        .timeline-date {
+            color: var(--bright-pink);
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-subtitle {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-desc {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            padding: 5px 12px;
+            background-color: var(--light-blue);
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 180px;
+            background-color: var(--light-blue);
+            position: relative;
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+        
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-text {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--bright-pink);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 80px 0;
+            }
+            
+            .hero-content {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .menu {
+                display: none;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-right: 0;
+                padding-left: 60px;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">TY</div>
+                <div class="menu">
+                    <a href="#work" class="menu-item">Work & Startup</a>
+                    <a href="#education" class="menu-item">Education</a>
+                    <a href="#projects" class="menu-item">AI/ML Projects</a>
+                    <a href="#research" class="menu-item">Research</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/tammyyang" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/tammyyang/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="name">Tammy <span class="highlight">Yang</span></h1>
+                <h2 class="job-title">Founder and CPO @ Numbers Protocol</h2>
+                <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning, Deep Learning, and Data Analysis. Serial entrepreneur and tech leader building decentralized solutions for digital-media provenance.</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section id="work">
+        <div class="container">
+            <h2 class="section-title">Work & Startup Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 2019 - Present</div>
+                        <h3 class="timeline-title">Founder and CPO</h3>
+                        <h4 class="timeline-subtitle">Numbers Protocol</h4>
+                        <p class="timeline-desc">Numbers builds an open, decentralized and creator-centric network to tackle the challenge of digital-media provenance.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Strategic Planning</span>
+                            <span class="skill-tag">Product Development</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2016 - May 2019</div>
+                        <h3 class="timeline-title">Co-Founder & Deep Learning Researcher</h3>
+                        <h4 class="timeline-subtitle">DT42</h4>
+                        <p class="timeline-desc">Research for algorithms to make deep learning models smaller and faster. Led AI system consulting and architecture design.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Product Development</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2015 - May 2016</div>
+                        <h3 class="timeline-title">Data Scientist</h3>
+                        <h4 class="timeline-subtitle">Viscovery Visual Search</h4>
+                        <p class="timeline-desc">Deep learning research for video content analysis. Created and optimized facial recognition models and training flows for research teams.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Product Development</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jul 2012 - Oct 2015</div>
+                        <h3 class="timeline-title">Software Engineer/Tech Lead</h3>
+                        <h4 class="timeline-subtitle">Canonical Ltd.</h4>
+                        <p class="timeline-desc">Tech Lead of HP and Dell OEM projects. Digitized engineering performance to optimize workflows and created tools to improve Ubuntu system integration.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Product Development</span>
+                            <span class="skill-tag">Team Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2006 - 2010</div>
+                        <h3 class="timeline-title">PhD in Particle Physics</h3>
+                        <h4 class="timeline-subtitle">The University of Manchester, UK</h4>
+                        <p class="timeline-desc">Conducted research with the DØ Collaboration at Fermilab (USA). Focused on search for MSSM Higgs Bosons in hadronic final states.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Physics</span>
+                            <span class="skill-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2001 - 2006</div>
+                        <h3 class="timeline-title">Bachelor's Degree in Physics</h3>
+                        <h4 class="timeline-subtitle">National Taiwan University</h4>
+                        <p class="timeline-desc">Department of Physics with a Minor in Mechanical Engineering. Undergraduate project on "Horizontal Air Showers" in High Energy Physics.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Physics</span>
+                            <span class="skill-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Oct 2010 - May 2011</div>
+                        <h3 class="timeline-title">Postdoctoral Fellow</h3>
+                        <h4 class="timeline-subtitle">National Taiwan University</h4>
+                        <p class="timeline-desc">Worked on the E14 Koto experiment (Japan). Improved data analysis framework and calorimeter clustering reconstruction.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Physics</span>
+                            <span class="skill-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">AI/ML Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-img"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Galahad</h3>
+                        <p class="project-desc">Predict trend of Taiwanese stocks using SVM model. Utilizes advanced machine learning techniques to forecast market patterns.</p>
+                        <div class="skills">
+                            <span class="skill-tag">SVM</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Facial Recognition System</h3>
+                        <p class="project-desc">Created and optimized facial recognition models for Viscovery. Developed training flows for research teams.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Numbers Protocol</h3>
+                        <p class="project-desc">Building an open, decentralized network to tackle the challenge of digital-media provenance and verification.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Blockchain</span>
+                            <span class="skill-tag">Digital Media</span>
+                            <span class="skill-tag">Data Authentication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Research Work</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2006 - 2010</div>
+                        <h3 class="timeline-title">Search for MSSM Higgs Bosons</h3>
+                        <h4 class="timeline-subtitle">DØ Collaboration, Fermilab (USA)</h4>
+                        <p class="timeline-desc">Focused on hadronic tau final states. Used statistical methods and machine learning techniques to exclude noise. Simulated particle behavior using Monte Carlo simulation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Oct 2010 - May 2011</div>
+                        <h3 class="timeline-title">E14 KOTO Experiment</h3>
+                        <h4 class="timeline-subtitle">National Taiwan University</h4>
+                        <p class="timeline-desc">Improved data analysis framework and worked on calorimeter clustering reconstruction for particle physics experiments.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2016 - 2019</div>
+                        <h3 class="timeline-title">Deep Learning Model Optimization</h3>
+                        <h4 class="timeline-subtitle">DT42</h4>
+                        <p class="timeline-desc">Research for algorithms to make deep learning models smaller and faster, focusing on edge computing applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="margin-bottom: 30px; font-size: 18px; line-height: 1.6;">Feel free to reach out for collaborations, consulting, or just to connect!</p>
+                <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;">
+                    <a href="mailto:tammy@numbersprotocol.io" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--black);">
+                        <i class="fas fa-envelope" style="font-size: 30px; margin-bottom: 10px; color: var(--bright-pink);"></i>
+                        <span>tammy@numbersprotocol.io</span>
+                    </a>
+                    <a href="https://linkedin.com/in/tammyyang" target="_blank" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--black);">
+                        <i class="fab fa-linkedin" style="font-size: 30px; margin-bottom: 10px; color: var(--bright-pink);"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/tammyyang" target="_blank" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--black);">
+                        <i class="fab fa-github" style="font-size: 30px; margin-bottom: 10px; color: var(--bright-pink);"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">Tammy Yang | Data Scientist & Entrepreneur</p>
+            <div class="footer-links">
+                <a href="#work" class="footer-link">Work</a>
+                <a href="#education" class="footer-link">Education</a>
+                <a href="#projects" class="footer-link">Projects</a>
+                <a href="#research" class="footer-link">Research</a>
+                <a href="#contact" class="footer-link">Contact</a>
+            </div>
+            <p class="copyright">© 2025 Tammy Yang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Highlight active menu item on scroll
+            const sections = document.querySelectorAll('section[id]');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        current = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === current) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
