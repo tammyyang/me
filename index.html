@@ -122,7 +122,7 @@
             top: 0;
             width: 40%;
             height: 100%;
-            background-image: url('/api/placeholder/500/750');
+            background-image: url('assets/profile-pic');
             background-size: cover;
             background-position: center;
             mask-image: linear-gradient(to right, transparent, var(--black) 40%);
@@ -458,7 +458,7 @@
                 <div class="menu">
                     <a href="#work" class="menu-item">Work & Startup</a>
                     <a href="#education" class="menu-item">Education</a>
-                    <a href="#projects" class="menu-item">AI/ML Projects</a>
+                    <a href="#projects" class="menu-item">ML/Data Projects</a>
                     <a href="#research" class="menu-item">Research</a>
                 </div>
                 <div class="social-icons">
@@ -473,8 +473,8 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="name">Tammy <span class="highlight">Yang</span></h1>
-                <h2 class="job-title">Founder and CPO @ Numbers Protocol</h2>
-                <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning, Deep Learning, and Data Analysis. Serial entrepreneur and tech leader building decentralized solutions for digital-media provenance.</p>
+                <h2 class="job-title">Data Scientist, Innovator, and Problem Solver</h2>
+                <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning and Data Analysis. Serial entrepreneur and tech leader building AI solutions for content provenance.</p>
                 <a href="#contact" class="btn">Get in Touch</a>
             </div>
         </div>
@@ -549,6 +549,19 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
+                        <div class="timeline-date">Oct 2010 - May 2011</div>
+                        <h3 class="timeline-title">Postdoctoral Fellow</h3>
+                        <h4 class="timeline-subtitle">National Taiwan University</h4>
+                        <p class="timeline-desc">Worked on the E14 Koto experiment (Japan). Improved data analysis framework and calorimeter clustering reconstruction.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Physics</span>
+                            <span class="skill-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
                         <div class="timeline-date">2006 - 2010</div>
                         <h3 class="timeline-title">PhD in Particle Physics</h3>
                         <h4 class="timeline-subtitle">The University of Manchester, UK</h4>
@@ -572,47 +585,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Oct 2010 - May 2011</div>
-                        <h3 class="timeline-title">Postdoctoral Fellow</h3>
-                        <h4 class="timeline-subtitle">National Taiwan University</h4>
-                        <p class="timeline-desc">Worked on the E14 Koto experiment (Japan). Improved data analysis framework and calorimeter clustering reconstruction.</p>
-                        <div class="skills">
-                            <span class="skill-tag">Physics</span>
-                            <span class="skill-tag">Machine Learning</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">AI/ML Projects</h2>
+            <h2 class="section-title">ML/Data Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
                     <div class="project-img"></div>
                     <div class="project-info">
-                        <h3 class="project-title">Galahad</h3>
-                        <p class="project-desc">Predict trend of Taiwanese stocks using SVM model. Utilizes advanced machine learning techniques to forecast market patterns.</p>
-                        <div class="skills">
-                            <span class="skill-tag">SVM</span>
-                            <span class="skill-tag">Data Analysis</span>
-                            <span class="skill-tag">Python</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img"></div>
-                    <div class="project-info">
-                        <h3 class="project-title">Facial Recognition System</h3>
-                        <p class="project-desc">Created and optimized facial recognition models for Viscovery. Developed training flows for research teams.</p>
+                        <h3 class="project-title">
+                            <a href="https://github.com/numbersprotocol/dyda" target="_blank" style="color: inherit; text-decoration: none;">
+                                Dyda <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
+                            </a>
+                        </h3>
+                        <p class="project-desc">An open-source data pipeline framework for deep learning models. Streamlines AI workflows with modular architecture for better code reusability and faster implementation.</p>
                         <div class="skills">
                             <span class="skill-tag">Deep Learning</span>
-                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Data Pipeline</span>
                             <span class="skill-tag">Python</span>
                         </div>
                     </div>
@@ -620,12 +612,32 @@
                 <div class="project-card">
                     <div class="project-img"></div>
                     <div class="project-info">
-                        <h3 class="project-title">Numbers Protocol</h3>
-                        <p class="project-desc">Building an open, decentralized network to tackle the challenge of digital-media provenance and verification.</p>
+                        <h3 class="project-title">
+                            <a href="https://github.com/DT42/squeezenet_demo" target="_blank" style="color: inherit; text-decoration: none;">
+                                SqueezeNet Demo <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
+                            </a>
+                        </h3>
+                        <p class="project-desc">Keras implementation of SqueezeNet (arXiv 1602.07360) that achieves AlexNet-level accuracy with 50x fewer parameters. Optimized for deployment on resource-constrained devices.</p>
                         <div class="skills">
-                            <span class="skill-tag">Blockchain</span>
-                            <span class="skill-tag">Digital Media</span>
-                            <span class="skill-tag">Data Authentication</span>
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Model Optimization</span>
+                            <span class="skill-tag">Keras</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">
+                            <a href="https://github.com/DT42/squeezenet_demo" target="_blank" style="color: inherit; text-decoration: none;">
+                                AIKEA <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
+                            </a>
+                        </h3>
+                        <p class="project-desc">Edge AI computer vision solution running on Raspberry Pi. Transforms basic cameras into intelligent systems for real-time object detection and classification.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Edge AI</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Raspberry Pi</span>
                         </div>
                     </div>
                 </div>
@@ -640,17 +652,27 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">2006 - 2010</div>
-                        <h3 class="timeline-title">Search for MSSM Higgs Bosons</h3>
-                        <h4 class="timeline-subtitle">DØ Collaboration, Fermilab (USA)</h4>
-                        <p class="timeline-desc">Focused on hadronic tau final states. Used statistical methods and machine learning techniques to exclude noise. Simulated particle behavior using Monte Carlo simulation.</p>
+                        <div class="timeline-date">2016 - 2019</div>
+                        <h3 class="timeline-title">
+                            <a href="https://github.com/DT42" target="_blank" style="color: inherit; text-decoration: none;">
+                                Deep Learning Model Optimization
+                                <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
+                            </a>
+                        </h3>
+                        <h4 class="timeline-subtitle">DT42</h4>
+                        <p class="timeline-desc">Research for algorithms to make deep learning models smaller and faster, focusing on edge computing applications.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Oct 2010 - May 2011</div>
-                        <h3 class="timeline-title">E14 KOTO Experiment</h3>
+                        <h3 class="timeline-title">
+                            <a href="https://koto.kek.jp/" target="_blank" style="color: inherit; text-decoration: none;">
+                                E14 KOTO Experiment
+                                <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
+                            </a>
+                        </h3>
                         <h4 class="timeline-subtitle">National Taiwan University</h4>
                         <p class="timeline-desc">Improved data analysis framework and worked on calorimeter clustering reconstruction for particle physics experiments.</p>
                     </div>
@@ -658,10 +680,15 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">2016 - 2019</div>
-                        <h3 class="timeline-title">Deep Learning Model Optimization</h3>
-                        <h4 class="timeline-subtitle">DT42</h4>
-                        <p class="timeline-desc">Research for algorithms to make deep learning models smaller and faster, focusing on edge computing applications.</p>
+                        <div class="timeline-date">2006 - 2010</div>
+                        <h3 class="timeline-title">
+                            <a href="https://www.osti.gov/biblio/992645" target="_blank" style="color: inherit; text-decoration: none;">
+                                Search for MSSM Higgs Bosons
+                                <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
+                            </a>
+                        </h3>
+                        <h4 class="timeline-subtitle">DØ Collaboration, Fermilab (USA)</h4>
+                        <p class="timeline-desc">Focused on hadronic tau final states. Used statistical methods and machine learning techniques to exclude noise. Simulated particle behavior using Monte Carlo simulation.</p>
                     </div>
                 </div>
             </div>
