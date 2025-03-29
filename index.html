@@ -168,6 +168,41 @@
             box-shadow: 0 10px 20px rgba(255, 22, 148, 0.3);
         }
         
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            margin-left: 15px;
+            background-color: var(--black);
+            color: var(--white);
+            border: 1px solid var(--bright-pink);
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .play-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: translateY(-3px);
+        }
+        
+        .play-btn i {
+            margin-right: 8px;
+        }
+        
+        .playing {
+            background-color: var(--bright-pink);
+            border-color: var(--bright-pink);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
         section {
             padding: 80px 0;
         }
@@ -475,7 +510,16 @@
                 <h1 class="name">Tammy <span class="highlight">Yang</span></h1>
                 <h2 class="job-title">Data Scientist, Innovator, and Problem Solver</h2>
                 <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning and Data Analysis. Serial entrepreneur and tech leader building AI solutions for content provenance.</p>
-                <a href="#contact" class="btn">Get in Touch</a>
+                <div>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                    <button id="voiceBtn" class="play-btn" aria-label="Play audio introduction">
+                        <i class="fas fa-play"></i> <span id="btnText">Listen My Intro</span>
+                    </button>
+                    <audio id="voiceAudio" preload="metadata">
+                        <source src="assets/Voice.m4a" type="audio/mp4">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
             </div>
         </div>
         <div class="hero-image"></div>
@@ -1110,6 +1154,40 @@
                         });
                     }
                 });
+            });
+            
+            // Audio player functionality
+            const voiceBtn = document.getElementById('voiceBtn');
+            const voiceAudio = document.getElementById('voiceAudio');
+            const btnText = document.getElementById('btnText');
+            
+            voiceBtn.addEventListener('click', function() {
+                if (voiceAudio.paused) {
+                    // Play audio
+                    voiceAudio.play()
+                    .then(() => {
+                        // Update button style and text on successful play
+                        voiceBtn.classList.add('playing');
+                        btnText.textContent = 'Listening';
+                        voiceBtn.querySelector('i').classList.replace('fa-play', 'fa-pause');
+                    })
+                    .catch(error => {
+                        console.error('Error playing audio:', error);
+                    });
+                } else {
+                    // Pause audio
+                    voiceAudio.pause();
+                    voiceBtn.classList.remove('playing');
+                    btnText.textContent = 'Listen My Intro';
+                    voiceBtn.querySelector('i').classList.replace('fa-pause', 'fa-play');
+                }
+            });
+            
+            // Reset button when audio ends
+            voiceAudio.addEventListener('ended', function() {
+                voiceBtn.classList.remove('playing');
+                btnText.textContent = 'Listen My Intro';
+                voiceBtn.querySelector('i').classList.replace('fa-pause', 'fa-play');
             });
             
             // Highlight active menu item on scroll
