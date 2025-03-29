@@ -171,7 +171,7 @@
         .play-btn {
             display: inline-flex;
             align-items: center;
-            padding: 12px 20px;
+            padding: 12px 30px; /* Match the padding of the .btn class */
             margin-left: 15px;
             background-color: var(--black);
             color: var(--white);
@@ -179,12 +179,23 @@
             border-radius: 5px;
             font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s; /* Match the transition of the .btn class */
+            vertical-align: middle; /* Ensure vertical alignment */
+            height: 100%; /* Match the height of .btn */
+            line-height: normal; /* Normalize line height */
+            position: relative;
+            top: 0; /* Ensure no offset */
+        }
+        
+        /* Make the button container flex to align buttons perfectly */
+        .hero-content .button-container {
+            display: flex;
+            align-items: center;
         }
         
         .play-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            transform: translateY(-3px);
+            transform: translateY(-3px); /* Match the hover transform of .btn */
+            box-shadow: 0 10px 20px rgba(255, 22, 148, 0.3); /* Match hover shadow */
         }
         
         .play-btn i {
@@ -510,7 +521,7 @@
                 <h1 class="name">Tammy <span class="highlight">Yang</span></h1>
                 <h2 class="job-title">Data Scientist, Innovator, and Problem Solver</h2>
                 <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning and Data Analysis. Serial entrepreneur and tech leader building AI solutions for content provenance.</p>
-                <div>
+                <div class="button-container">
                     <a href="#contact" class="btn">Get in Touch</a>
                     <button id="voiceBtn" class="play-btn" aria-label="Play audio introduction">
                         <i class="fas fa-play"></i> <span id="btnText">Listen My Intro</span>
