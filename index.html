@@ -645,34 +645,26 @@
         </div>
     </section>
 
-    <section id="research" style="background-color: #f9f9f9;">
+        <section id="research" style="background-color: #f9f9f9;">
         <div class="container">
             <h2 class="section-title">Research Work</h2>
+            
+            <!-- Research Areas Timeline -->
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">2016 - 2019</div>
-                        <h3 class="timeline-title">
-                            <a href="https://github.com/DT42" target="_blank" style="color: inherit; text-decoration: none;">
-                                Deep Learning Model Optimization
-                                <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
-                            </a>
-                        </h3>
-                        <h4 class="timeline-subtitle">DT42</h4>
-                        <p class="timeline-desc">Research for algorithms to make deep learning models smaller and faster, focusing on edge computing applications.</p>
+                        <div class="timeline-date">2006 - 2010</div>
+                        <h3 class="timeline-title">Search for MSSM Higgs Bosons</h3>
+                        <h4 class="timeline-subtitle">DØ Collaboration, Fermilab (USA)</h4>
+                        <p class="timeline-desc">Focused on hadronic tau final states. Used statistical methods and machine learning techniques to exclude noise. Simulated particle behavior using Monte Carlo simulation.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Oct 2010 - May 2011</div>
-                        <h3 class="timeline-title">
-                            <a href="https://koto.kek.jp/" target="_blank" style="color: inherit; text-decoration: none;">
-                                E14 KOTO Experiment
-                                <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
-                            </a>
-                        </h3>
+                        <h3 class="timeline-title">E14 KOTO Experiment</h3>
                         <h4 class="timeline-subtitle">National Taiwan University</h4>
                         <p class="timeline-desc">Improved data analysis framework and worked on calorimeter clustering reconstruction for particle physics experiments.</p>
                     </div>
@@ -680,15 +672,243 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">2006 - 2010</div>
-                        <h3 class="timeline-title">
-                            <a href="https://www.osti.gov/biblio/992645" target="_blank" style="color: inherit; text-decoration: none;">
-                                Search for MSSM Higgs Bosons
-                                <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i>
-                            </a>
-                        </h3>
-                        <h4 class="timeline-subtitle">DØ Collaboration, Fermilab (USA)</h4>
-                        <p class="timeline-desc">Focused on hadronic tau final states. Used statistical methods and machine learning techniques to exclude noise. Simulated particle behavior using Monte Carlo simulation.</p>
+                        <div class="timeline-date">2016 - 2019</div>
+                        <h3 class="timeline-title">Deep Learning Model Optimization</h3>
+                        <h4 class="timeline-subtitle">DT42</h4>
+                        <p class="timeline-desc">Research for algorithms to make deep learning models smaller and faster, focusing on edge computing applications.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Publications and Conferences Tabs -->
+            <div style="margin-top: 80px;">
+                <div class="tab-container" style="border-bottom: 1px solid #eee;">
+                    <button class="tab active" onclick="showTab('publications')">Publications</button>
+                    <button class="tab" onclick="showTab('conferences')">Conference Presentations</button>
+                </div>
+                
+                <!-- Publications Tab -->
+                <div id="publications" class="content active">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" placeholder="Search publications..." style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; margin-right: 10px;">
+                            <select style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option>All Years</option>
+                                <option>2010-2020</option>
+                                <option>2000-2010</option>
+                            </select>
+                        </div>
+                        <a href="#" class="btn-small" style="background-color: var(--black); color: var(--white);">
+                            <i class="fas fa-download" style="margin-right: 5px;"></i> Download Full List
+                        </a>
+                    </div>
+                    
+                    <!-- Featured Publications (Always Visible) -->
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="font-size: 20px; margin-bottom: 15px;">Featured Publications</h3>
+                        <div style="background-color: var(--white); padding: 20px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 10px;">Search for Higgs Bosons Decaying to Tau Pairs in pp Collisions with the DØ Detector</h4>
+                            <p style="color: #555; margin-bottom: 10px;">Physical Review Letters 101 (2009)</p>
+                            <p>DØ Collaboration (V.M. Abazov et al.)</p>
+                            <a href="http://arxiv.org/abs/0805.2491" target="_blank" style="color: var(--bright-pink); text-decoration: none; font-weight: 500;">View Paper <i class="fas fa-external-link-alt" style="font-size: 12px;"></i></a>
+                        </div>
+                        <div style="background-color: var(--white); padding: 20px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h4 style="font-size: 18px; margin-bottom: 10px;">Search for MSSM Higgs Bosons in Tau Final States with the DØ Detector</h4>
+                            <p style="color: #555; margin-bottom: 10px;">PhD Thesis, FERMILAB-THESIS-2010-46, September 2010</p>
+                            <p>Advisor: Stefan Soldner-Rembold</p>
+                            <a href="#" style="color: var(--bright-pink); text-decoration: none; font-weight: 500;">View Thesis <i class="fas fa-external-link-alt" style="font-size: 12px;"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Collapsible Publications List -->
+                    <div style="background-color: var(--white); border-radius: 5px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="togglePublications()">
+                            <h3 style="font-size: 18px; margin: 0;">DØ Conference Notes & Proceedings</h3>
+                            <i id="pub-icon" class="fas fa-chevron-down"></i>
+                        </div>
+                        <div id="all-publications" style="display: none; padding: 0 20px 20px;">
+                            <h4 style="font-size: 16px; margin: 20px 0 15px;">Public DØ Conference Notes (primary author)</h4>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Combined CDF and DØ Upper Limits on MSSM Higgs Boson Production in Tau-Tau Final States with up to 2.2 fb−1 of Data</h4>
+                                <p style="font-size: 14px;">J. Hays et al.</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Note 6036-CONF</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Combined Upper Limits on MSSM Higgs Boson Production with up to 2.6 fb−1 of Data at DØ</h4>
+                                <p style="font-size: 14px;">J. Hays et al.</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Note 5935-CONF</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Search for MSSM Higgs Boson Production in the Di-tau Final State with L=2.2 fb−1 at the DØ Detector</h4>
+                                <p style="font-size: 14px;">W. Yang, S. Söldner-Rembold, M. Owen, A. Patwa, and M. Titov</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Note 5740-CONF</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Search for MSSM Higgs Boson Production in the Decay h→ τ τ → τµ+τhad with the DØ Detector at √s=1.96 TeV</h4>
+                                <p style="font-size: 14px;">W. Yang, S. Söldner-Rembold, M. Owen, and A. Patwa</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Note 5728-CONF</p>
+                            </div>
+                            
+                            <h4 style="font-size: 16px; margin: 20px 0 15px;">Proceedings</h4>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Search for Standard Model and Beyond Standard Model Higgs bosons in di-tau final state at DØ</h4>
+                                <p style="font-size: 14px;">Wan-Ching Yang on behalf of the DØ Collaboration</p>
+                                <p style="color: #555; margin-bottom: 5px;">The 11th International Workshop on Tau Lepton Physics, Manchester, UK</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Search for MSSM Higgs Boson Production in the Di-tau Final State with L=2.2 fb−1 at the DØ Detector</h4>
+                                <p style="font-size: 14px;">Wan-Ching Yang on behalf of the DØ Collaboration</p>
+                                <p style="color: #555; margin-bottom: 5px;">ICHEP08, Philadelphia, USA</p>
+                            </div>
+                            
+                            <h4 style="font-size: 16px; margin: 20px 0 15px;">Internal DØ Notes</h4>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Search for MSSM Higgs Boson Production in the Decay h→ τ τ → τµ+τhad with the DØ Detector at √s=1.96 TeV</h4>
+                                <p style="font-size: 14px;">W. Yang, S. Söldner-Rembold, M. Owen, and A. Patwa</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Internal Note 5708</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Combination of p17 h→ τ τ Search Results</h4>
+                                <p style="font-size: 14px;">M. Owen, W. Yang, S. Söldner-Rembold and M. Titov</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Internal Note 5578</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px; padding-bottom: 15px;">
+                                <h4 style="font-size: 16px; margin-bottom: 5px;">Search for Neutral Higgs Boson in the Decay Channel τe τhad with p17 Data</h4>
+                                <p style="font-size: 14px;">M. Owen, W. Yang and S. Söldner-Rembold</p>
+                                <p style="color: #555; margin-bottom: 5px;">DØ Internal Note 5457</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Conferences Tab -->
+                <div id="conferences" class="content" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" placeholder="Search conferences..." style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; margin-right: 10px;">
+                            <select style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option>All Years</option>
+                                <option>2010-2011</option>
+                                <option>2008-2009</option>
+                                <option>2006-2007</option>
+                            </select>
+                        </div>
+                        <a href="#" class="btn-small" style="background-color: var(--black); color: var(--white);">
+                            <i class="fas fa-download" style="margin-right: 5px;"></i> Download Full List
+                        </a>
+                    </div>
+                    
+                    <!-- Conference Timeline -->
+                    <div style="position: relative; margin-bottom: 40px; overflow-x: auto; padding-bottom: 20px;">
+                        <div style="width: max-content; display: flex; gap: 15px; padding: 20px 0;">
+                            <div style="width: 220px; background-color: var(--white); padding: 15px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 3px solid var(--bright-pink);">
+                                <div style="font-size: 14px; color: #777;">January 25-27, 2011</div>
+                                <h4 style="font-size: 16px; margin: 5px 0;">Annual Meeting of the Physical Society of ROC</h4>
+                                <p style="font-size: 14px;">E14 KOTO Status Report</p>
+                                <span style="display: inline-block; background-color: var(--light-blue); font-size: 12px; padding: 3px 8px; border-radius: 12px;">Taipei, Taiwan</span>
+                            </div>
+                            <div style="width: 220px; background-color: var(--white); padding: 15px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 3px solid var(--bright-pink);">
+                                <div style="font-size: 14px; color: #777;">August 13-17, 2010</div>
+                                <h4 style="font-size: 16px; margin: 5px 0;">11th Int'l Workshop on Tau Lepton Physics</h4>
+                                <p style="font-size: 14px;">SM and BSM Higgs in di-tau final state</p>
+                                <span style="display: inline-block; background-color: var(--light-blue); font-size: 12px; padding: 3px 8px; border-radius: 12px;">Manchester, UK</span>
+                            </div>
+                            <div style="width: 220px; background-color: var(--white); padding: 15px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 3px solid var(--bright-pink);">
+                                <div style="font-size: 14px; color: #777;">July 29-31, 2010</div>
+                                <h4 style="font-size: 16px; margin: 5px 0;">Higgs Hunting - Tevatron and LHC Results</h4>
+                                <p style="font-size: 14px;">BSM Higgs Searches at DØ</p>
+                                <span style="display: inline-block; background-color: var(--light-blue); font-size: 12px; padding: 3px 8px; border-radius: 12px;">Orsay, France</span>
+                                <span style="display: block; margin-top: 5px; font-size: 12px; color: var(--bright-pink);">Talk at Young Scientist Forum</span>
+                            </div>
+                            <div style="width: 220px; background-color: var(--white); padding: 15px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 3px solid var(--light-blue);">
+                                <div style="font-size: 14px; color: #777;">May 31, 2010</div>
+                                <h4 style="font-size: 16px; margin: 5px 0;">National Taiwan University</h4>
+                                <p style="font-size: 14px;">MSSM Neutral Higgs in Tau Final States</p>
+                                <span style="display: inline-block; background-color: var(--light-blue); font-size: 12px; padding: 3px 8px; border-radius: 12px;">Taipei, Taiwan</span>
+                                <span style="display: block; margin-top: 5px; font-size: 12px; color: #777;">Seminar</span>
+                            </div>
+                            <div style="width: 220px; background-color: var(--white); padding: 15px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 3px solid var(--light-blue);">
+                                <div style="font-size: 14px; color: #777;">December 3, 2009</div>
+                                <h4 style="font-size: 16px; margin: 5px 0;">Bohr Lunch Seminar</h4>
+                                <p style="font-size: 14px;">MSSM Neutral Higgs in Tau Final States</p>
+                                <span style="display: inline-block; background-color: var(--light-blue); font-size: 12px; padding: 3px 8px; border-radius: 12px;">Manchester, UK</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Collapsible Conference List -->
+                    <div style="background-color: var(--white); border-radius: 5px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleConferences()">
+                            <h3 style="font-size: 18px; margin: 0;">All Conference Presentations</h3>
+                            <i id="conf-icon" class="fas fa-chevron-down"></i>
+                        </div>
+                        <div id="all-conferences" style="display: none; padding: 0 20px 20px;">
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h4 style="font-size: 16px; margin-bottom: 5px;">December 3, 2009 - Bohr Lunch Seminar</h4>
+                                        <p style="font-size: 14px;">Search for MSSM Neutral Higgs in Tau Final States at DØ</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <p style="font-size: 14px;">University of Manchester, UK</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h4 style="font-size: 16px; margin-bottom: 5px;">July 14-25, 2008 - 34th International Conference on High Energy Physics (ICHEP)</h4>
+                                        <p style="font-size: 14px;">Search for MSSM Higgs Boson Decaying to Tau Pairs at DØ</p>
+                                        <a href="http://arxiv.org/pdf/0810.3219" target="_blank" style="color: var(--bright-pink); text-decoration: none; font-size: 14px;">View Paper</a>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <p style="font-size: 14px;">Philadelphia, USA</p>
+                                        <span style="display: inline-block; background-color: #f5f5f5; font-size: 12px; padding: 3px 8px; border-radius: 12px;">Poster</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h4 style="font-size: 16px; margin-bottom: 5px;">April 11-15, 2008 - American Physical Society Meeting</h4>
+                                        <p style="font-size: 14px;">Search for MSSM Higgs Boson Decaying to Tau Pairs at DØ</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <p style="font-size: 14px;">St. Louis, USA</p>
+                                        <span style="display: inline-block; background-color: #f5f5f5; font-size: 12px; padding: 3px 8px; border-radius: 12px;">Parallel Session Talk</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h4 style="font-size: 16px; margin-bottom: 5px;">September 2-14, 2007 - RAL Summer School</h4>
+                                        <p style="font-size: 14px;">Search for MSSM Higgs Boson Decaying to Tau Pairs at DØ</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <p style="font-size: 14px;">Oxford, UK</p>
+                                        <span style="display: inline-block; background-color: #f5f5f5; font-size: 12px; padding: 3px 8px; border-radius: 12px;">Poster</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px; padding-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h4 style="font-size: 16px; margin-bottom: 5px;">2006-present - DØ Meetings</h4>
+                                        <p style="font-size: 14px;">Frequent presentations during regular working meetings and at collaboration meetings</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -774,6 +994,59 @@
                 });
             });
         });
+
+        // Tab switching function for publications and conferences
+        function showTab(tabName) {
+            // Hide all content sections
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show the selected tab content and mark tab as active
+            document.getElementById(tabName).style.display = 'block';
+            document.getElementById(tabName).classList.add('active');
+            
+            // Find the tab button that corresponds to this tab and mark it active
+            document.querySelectorAll('.tab').forEach(tab => {
+                if (tab.getAttribute('onclick').includes(tabName)) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        // Toggle publications list
+        function togglePublications() {
+            const publicationsElement = document.getElementById('all-publications');
+            const icon = document.getElementById('pub-icon');
+            
+            if (publicationsElement.style.display === 'none' || !publicationsElement.style.display) {
+                publicationsElement.style.display = 'block';
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                publicationsElement.style.display = 'none';
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        // Toggle conferences list
+        function toggleConferences() {
+            const conferencesElement = document.getElementById('all-conferences');
+            const icon = document.getElementById('conf-icon');
+            
+            if (conferencesElement.style.display === 'none' || !conferencesElement.style.display) {
+                conferencesElement.style.display = 'block';
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                conferencesElement.style.display = 'none';
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
     </script>
 </body>
 </html>
