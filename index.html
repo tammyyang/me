@@ -517,6 +517,35 @@
             color: #999;
         }
         
+        /* SVG styling to align with brand colors */
+        svg {
+            fill: var(--bright-pink);
+        }
+        
+        svg path {
+            fill: var(--bright-pink);
+        }
+        
+        /* WebBrain container styling */
+        .web-brain-container,
+        div[id^="web-brain-"] {
+            --primary-color: var(--bright-pink) !important;
+            --accent-color: var(--bright-pink) !important;
+            --highlight-color: var(--bright-pink) !important;
+        }
+        
+        /* Ensure all SVG icons from external sources match the theme */
+        .icon-link svg,
+        .social-icons svg,
+        svg[xmlns="http://www.w3.org/2000/svg"] {
+            fill: currentColor;
+        }
+        
+        .icon-link:hover svg,
+        .social-icons a:hover svg {
+            fill: var(--bright-pink);
+        }
+        
         @media (max-width: 768px) {
             .hero {
                 height: auto;
@@ -1536,8 +1565,29 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             WebBrain.init({
-                userId: "CtQkcdhSNLUPYOYcX8yMOuE5S7o2" // Replace with your actual user ID
+                userId: "CtQkcdhSNLUPYOYcX8yMOuE5S7o2", // Replace with your actual user ID
+                theme: {
+                    primaryColor: "#FF1694", // Brand color
+                    textColor: "#000000",
+                    backgroundColor: "#FFFFFF"
+                }
             });
+            
+            // Additional styling for WebBrain elements that might be injected after initialization
+            const style = document.createElement('style');
+            style.textContent = `
+                .web-brain-widget button,
+                .web-brain-widget .primary-button,
+                .web-brain-widget .highlighted {
+                    background-color: #FF1694 !important;
+                    border-color: #FF1694 !important;
+                }
+                .web-brain-widget a,
+                .web-brain-widget .link {
+                    color: #FF1694 !important;
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
