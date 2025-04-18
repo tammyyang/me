@@ -517,33 +517,30 @@
             color: #999;
         }
         
-        /* SVG styling to align with brand colors */
-        svg {
+        /* SVG styling to align with brand colors - ONLY for site icons */
+        svg:not(.web-brain-google-login-button svg) {
             fill: var(--bright-pink);
         }
         
-        svg path {
-            fill: var(--bright-pink);
+        /* Preserve Google logo styling exactly as defined in the SVG */
+        .web-brain-google-login-button svg path[fill="#EA4335"] {
+            fill: #EA4335 !important;
         }
         
-        /* WebBrain container styling */
-        .web-brain-container,
-        div[id^="web-brain-"] {
-            --primary-color: var(--bright-pink) !important;
-            --accent-color: var(--bright-pink) !important;
-            --highlight-color: var(--bright-pink) !important;
+        .web-brain-google-login-button svg path[fill="#4285F4"] {
+            fill: #4285F4 !important;
         }
         
-        /* Ensure all SVG icons from external sources match the theme */
-        .icon-link svg,
-        .social-icons svg,
-        svg[xmlns="http://www.w3.org/2000/svg"] {
-            fill: currentColor;
+        .web-brain-google-login-button svg path[fill="#FBBC05"] {
+            fill: #FBBC05 !important;
         }
         
-        .icon-link:hover svg,
-        .social-icons a:hover svg {
-            fill: var(--bright-pink);
+        .web-brain-google-login-button svg path[fill="#34A853"] {
+            fill: #34A853 !important;
+        }
+        
+        .web-brain-google-login-button svg path[fill="none"] {
+            fill: transparent !important;
         }
         
         @media (max-width: 768px) {
