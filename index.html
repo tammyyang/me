@@ -617,7 +617,7 @@
                 <h2 class="job-title">Data Scientist, Innovator, and Problem Solver</h2>
                 <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning and Data Analysis. Serial entrepreneur and tech leader building AI solutions for content provenance.</p>
                 <div class="button-container">
-                    <a href="#contact" class="btn">Get in Touch</a>
+                    <a href="#" class="btn" id="askAiBtn">Ask AI</a>
                     <button id="voiceBtn" class="play-btn" aria-label="Play audio introduction">
                         <i class="fas fa-play"></i> <span id="btnText">Listen My Intro</span>
                     </button>
@@ -1475,6 +1475,13 @@
                 if (newIndex > maxIndex) newIndex = 0;
                 showTestimonial(newIndex);
             }, 10000); // Change every 10 seconds
+
+            // WebBrain Ask AI button functionality
+            const askAiBtn = document.getElementById('askAiBtn');
+            askAiBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                WebBrain.open();
+            });
         });
 
         // Tab switching function for publications and conferences
