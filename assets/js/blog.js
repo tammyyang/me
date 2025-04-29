@@ -152,7 +152,7 @@ async function fetchBlogPosts(language) {
                         return {
                             ...postData,
                             ...post,
-                            htmlFile: `${config.htmlBlogPath}/${post.slug}_${language}.html`
+                            htmlFile: `${config.htmlBlogPath}/${post.htmlFileName}`
                         };
                     }
                     return null;
