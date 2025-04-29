@@ -171,7 +171,8 @@ async function fetchPostData(filePath) {
     try {
         const response = await fetch(filePath);
         if (!response.ok) {
-            throw new Error(`Failed to fetch post: ${filePath}`);
+            console.error(`Error fetching post data from ${filePath}: ${response.statusText}`);
+            return null;
         }
         
         const markdown = await response.text();
