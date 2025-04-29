@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Thinking and AI Conversations | Tammy Yang Blog</title>
+    <link rel="icon" href="assets/tammy-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Open Graph / Facebook Meta Tags - Will be dynamically updated -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://github.com/tammyyang/me">
+    <meta property="og:title" content="Design Thinking and AI Conversations | Tammy Yang Blog">
+    <meta property="og:description" content="Stuck Talking to AI? Break Through with Design Thinking!">
+    <meta property="og:image" content="assets/blog-images/250415.png">
+
+    <!-- Twitter Meta Tags - Will be dynamically updated -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://github.com/tammyyang/me">
+    <meta name="twitter:title" content="Design Thinking and AI Conversations | Tammy Yang Blog">
+    <meta name="twitter:description" content="Stuck Talking to AI? Break Through with Design Thinking!">
+    <meta name="twitter:image" content="assets/blog-images/250415.png">
+    
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --bright-pink: #FF1694;
+            --yellow: #FFFF00;
+            --light-blue: #ADD8E6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        header {
+            background-color: var(--black);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bright-pink);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        
+        .menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .menu-item {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .menu-item:hover {
+            color: var(--bright-pink);
+        }
+        
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--bright-pink);
+            transition: width 0.3s;
+        }
+        
+        .menu-item:hover::after {
+            width: 100%;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon-link {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .icon-link:hover {
+            color: var(--bright-pink);
+        }
+        
+        /* Post Header Styles */
+        .post-header {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .post-title {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: #777;
+        }
+        
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .language-toggle {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .lang-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--bright-pink);
+            background-color: transparent;
+            color: var(--black);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background-color: var(--bright-pink);
+            color: var(--white);
+        }
+        
+        /* Post Featured Image */
+        .post-featured-img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            margin-bottom: 40px;
+        }
+        
+        /* Post Content Styles */
+        .post-content {
+            padding: 20px 0 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .post-content h1 {
+            font-size: 2.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--black);
+        }
+        
+        .post-content h2 {
+            font-size: 2rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--black);
+        }
+        
+        .post-content h3 {
+            font-size: 1.75rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--black);
+        }
+        
+        .post-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .post-content a {
+            color: var(--bright-pink);
+            text-decoration: none;
+        }
+        
+        .post-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid var(--bright-pink);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 20px;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .post-content code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .post-content pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        
+        /* Post Navigation */
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-link {
+            color: var(--bright-pink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Language Fallback Notice */
+        .fallback-notice {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fallback-notice i {
+            font-size: 18px;
+        }
+        
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-text {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--bright-pink);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            
+            .post-title {
+                font-size: 32px;
+            }
+            
+            .post-content {
+                padding: 20px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">TY</a>
+                <div class="menu">
+                    <a href="index.html#work" class="menu-item">Work & Startup</a>
+                    <a href="index.html#education" class="menu-item">Education</a>
+                    <a href="index.html#endorsements" class="menu-item">Endorsements</a>
+                    <a href="index.html#research" class="menu-item">Research</a>
+                    <a href="index.html#projects" class="menu-item">ML/Data Projects</a>
+                    <a href="blog.html" class="menu-item" style="color: var(--bright-pink);">Blog</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/tammyyang" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/tammyyang/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="postHeader" class="post-header">
+        <h1 class="post-title">Design Thinking and AI Conversations</h1>
+        <div class="post-meta">
+            <div class="post-date">
+                <i class="far fa-calendar-alt"></i>
+                April 15, 2025
+            </div>
+            <div class="post-author">
+                <i class="far fa-user"></i>
+                Tammy Yang
+            </div>
+        </div>
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en" 
+                onclick="window.location.href='250415_en.html'">English</button>
+            <button class="lang-btn " data-lang="zh-tw"
+                onclick="window.location.href='250415_zh-tw.html'">中文</button>
+        </div>
+    </div>
+        
+        <!-- Fallback notice - shown only when language fallback happens -->
+        <div id="fallbackNotice" class="fallback-notice" style="display: none;">
+            <i class="fas fa-info-circle"></i>
+            <span>This post is not available in your selected language. Showing the English version instead.</span>
+        </div>
+        
+        <!-- Featured image container -->
+        <div id="featuredImageContainer"><img src="assets/blog-images/250415.png" alt="Design Thinking and AI Conversations" class="post-featured-img"></div>
+        
+        <div id="postContent" class="post-content"><h1>Design Thinking and AI Conversations</h1>
+
+<p>As AI tools become increasingly popular, many teams rely on them to improve efficiency and accelerate creativity. However, I often observe a common pattern: despite aiming to save time, people end up stuck in an endless loop of "rewriting" and "dissatisfaction."</p>
+
+<p>Recently, one of my team members tried three times to draft a client email with the help of AI, but still couldn’t get my (the boss’s) approval. We’re both using the same AI model — OpenAI o3 — so clearly the issue isn’t the AI itself, but the <strong>way we think</strong>.</p>
+
+<p>In cases like this, I usually encourage the team to apply the <strong>Design Thinking</strong> process — a five-step method commonly used in product design — to reassess the problem. It turns out that Design Thinking isn’t just for product development. It’s also a powerful framework for communicating with AI and solving ambiguous problems.</p>
+
+<p>---</p>
+
+<h2>Step 1: <strong>Empathise</strong> – Understand You're Not the End User</h2>
+
+<p>Let’s return to the example above. When AI doesn’t deliver the expected result, step back and ask: “Who is this message really for?”</p>
+
+<p>If the final version needs my approval as the founder, then ask: What do I care about? Brand tone? Clarity? Strategic alignment?  
+If the message is going to a client, then ask: Will they feel respected and taken seriously? Will they feel inclined to respond?</p>
+
+<p>Before drafting anything, the key question is: <strong>Do I fully understand the recipient’s needs?</strong>  
+If you can't step outside your own perspective and define the real requirements, neither a human nor an AI can help you solve the problem properly.</p>
+
+<strong>Suggested Action</strong>: Shift your mindset from “What do I want to say?” to “What would this person want to receive?” Focus on concrete feedback.
+
+<p>---</p>
+
+<h2>Step 2: <strong>Define</strong> – Only When You Frame the Problem Clearly Can You Solve It</h2>
+
+<p>Once you’ve gathered insights through empathy, ask yourself: Have I shared this information with the AI?</p>
+
+<p>Design Thinking requires clear definitions, and this definition must be present in your prompt. Compare:</p>
+
+<p>> “Write a letter to a client.”</p>
+
+<p>vs.</p>
+
+<p>> “Write a letter to a client who is a UK-based designer concerned about professionalism, copyright, and privacy. I want him to understand that in this phase of the collaboration, he needs to provide essential information so we can deliver value together. This letter will be reviewed by my boss, who prefers concise and precise communication.”</p>
+
+<p>These two prompts will result in very different outputs.</p>
+
+<strong>Suggested Action</strong>: Avoid vague instructions. Define roles and expectations clearly in your prompt. For complex scenarios, consider creating a separate conversation with AI to refine your prompt.
+
+<p>---</p>
+
+<h2>Step 3: <strong>Ideate</strong> – AI Needs Creativity Too</h2>
+
+<p>Creative breakthroughs often come from team brainstorming, not linear task execution.</p>
+
+<p>Treat AI like your teammate — it also benefits from suggestions and shared thinking. Try an open-ended approach before jumping into the task.</p>
+
+<p>Example prompt:  
+> “What do you think is the most important message for this letter?”</p>
+
+<p>Let AI brainstorm with you. You may be surprised by its insights.</p>
+
+<strong>Suggested Action</strong>: Before assigning a task (or when it’s not going well), pause and re-plan the strategy with AI.
+
+<p>---</p>
+
+<h2>Step 4: <strong>Prototype</strong> – Generate Drafts Quickly, Don’t Aim for Perfection</h2>
+
+<p>AI's strength is speed — whether it’s writing documents or code, it excels at producing volume.</p>
+
+<p>Rather than expecting the AI to get it perfect in one go, ask it to produce multiple options. For instance:</p>
+
+<p>> “Give me three versions of this letter with different tones: formal, friendly, and concise.”</p>
+
+<p>Then compare and refine.</p>
+
+<strong>Suggested Action</strong>: Instead of expecting one perfect draft, generate multiple quick prototypes, collect feedback, and improve iteratively.
+
+<p>---</p>
+
+<h2>Step 5: <strong>Test</strong> – Use Feedback to Refine the Next Prompt</h2>
+
+<p>After producing drafts and reviewing them yourself, share the best candidates with your boss or colleagues for feedback.</p>
+
+<p>Remember: this is not homework, and there’s no single “right” answer. So don’t ask, “Which one is better?” Instead ask:</p>
+
+<p>> “Which version better achieves our intended goal, and why?”</p>
+
+<p>As a thoughtful human, you should also share your view:  
+> “I think version X works better because…”</p>
+
+<p>This helps colleagues give more precise feedback. Then, incorporate that feedback into a final prompt for AI.</p>
+
+<strong>Suggested Action</strong>: Let AI produce, and let humans review.
+
+<p>---</p>
+
+<h2>Conclusion: AI Didn’t Write Poorly — We Asked Poorly</h2>
+
+<p>By applying these five steps to your AI interactions, you’ll realise: you’re not just inputting commands and waiting — you’re <strong>evolving your prompt design skill</strong>.</p>
+
+<p>Life and work are nuanced, full of emotional and contextual detail only humans can perceive. AI doesn’t know your boss’s tone preferences or your brand voice — it only knows what you type.</p>
+
+<p>That’s why <strong>Design Thinking</strong> can help you design better prompts — and why I strongly advocate for using it in team-AI collaboration.</p>
+
+<strong>Design Thinking isn’t about getting the task done faster — it’s about asking the right questions and creating meaningful results.</strong>
+
+<p>This, to me, is the true skill of a knowledge worker in the age of AI.</p>
+
+<p></p></div>
+        
+        <div class="post-navigation">
+            <a href="blog.html" class="nav-link">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+            
+            <!-- Share links -->
+            <div>
+                <a href="#" onclick="shareOnTwitter()" class="nav-link" style="margin-left: 15px;">
+                    <i class="fab fa-twitter"></i> Share on Twitter
+                </a>
+                <a href="#" onclick="shareOnLinkedIn()" class="nav-link" style="margin-left: 15px;">
+                    <i class="fab fa-linkedin"></i> Share on LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">Tammy Yang | Data Scientist & Entrepreneur</p>
+            <div class="footer-links">
+                <a href="index.html#work" class="footer-link">Work</a>
+                <a href="index.html#education" class="footer-link">Education</a>
+                <a href="index.html#projects" class="footer-link">Projects</a>
+                <a href="index.html#research" class="footer-link">Research</a>
+                <a href="index.html#contact" class="footer-link">Contact</a>
+                <a href="blog.html" class="footer-link">Blog</a>
+            </div>
+            <p class="copyright">© 2025 Tammy Yang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+
+    <script>
+    function shareOnTwitter() {
+        const title = encodeURIComponent(document.title);
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://twitter.com/intent/tweet?text=${title}&url=${url}`, '_blank');
+    }
+    
+    function shareOnLinkedIn() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用設計思維協助 AI 導入 | Tammy Yang Blog</title>
+    <link rel="icon" href="assets/tammy-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Open Graph / Facebook Meta Tags - Will be dynamically updated -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://github.com/tammyyang/me">
+    <meta property="og:title" content="用設計思維協助 AI 導入 | Tammy Yang Blog">
+    <meta property="og:description" content="跟 AI 對話卡關了嗎？用設計思維突破重圍。">
+    <meta property="og:image" content="assets/blog-images/250415.png">
+
+    <!-- Twitter Meta Tags - Will be dynamically updated -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://github.com/tammyyang/me">
+    <meta name="twitter:title" content="用設計思維協助 AI 導入 | Tammy Yang Blog">
+    <meta name="twitter:description" content="跟 AI 對話卡關了嗎？用設計思維突破重圍。">
+    <meta name="twitter:image" content="assets/blog-images/250415.png">
+    
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --bright-pink: #FF1694;
+            --yellow: #FFFF00;
+            --light-blue: #ADD8E6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        header {
+            background-color: var(--black);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bright-pink);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        
+        .menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .menu-item {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .menu-item:hover {
+            color: var(--bright-pink);
+        }
+        
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--bright-pink);
+            transition: width 0.3s;
+        }
+        
+        .menu-item:hover::after {
+            width: 100%;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon-link {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .icon-link:hover {
+            color: var(--bright-pink);
+        }
+        
+        /* Post Header Styles */
+        .post-header {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .post-title {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: #777;
+        }
+        
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .language-toggle {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .lang-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--bright-pink);
+            background-color: transparent;
+            color: var(--black);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background-color: var(--bright-pink);
+            color: var(--white);
+        }
+        
+        /* Post Featured Image */
+        .post-featured-img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            margin-bottom: 40px;
+        }
+        
+        /* Post Content Styles */
+        .post-content {
+            padding: 20px 0 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .post-content h1 {
+            font-size: 2.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--black);
+        }
+        
+        .post-content h2 {
+            font-size: 2rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--black);
+        }
+        
+        .post-content h3 {
+            font-size: 1.75rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--black);
+        }
+        
+        .post-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .post-content a {
+            color: var(--bright-pink);
+            text-decoration: none;
+        }
+        
+        .post-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid var(--bright-pink);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 20px;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .post-content code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .post-content pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        
+        /* Post Navigation */
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-link {
+            color: var(--bright-pink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Language Fallback Notice */
+        .fallback-notice {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fallback-notice i {
+            font-size: 18px;
+        }
+        
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-text {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--bright-pink);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            
+            .post-title {
+                font-size: 32px;
+            }
+            
+            .post-content {
+                padding: 20px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">TY</a>
+                <div class="menu">
+                    <a href="index.html#work" class="menu-item">Work & Startup</a>
+                    <a href="index.html#education" class="menu-item">Education</a>
+                    <a href="index.html#endorsements" class="menu-item">Endorsements</a>
+                    <a href="index.html#research" class="menu-item">Research</a>
+                    <a href="index.html#projects" class="menu-item">ML/Data Projects</a>
+                    <a href="blog.html" class="menu-item" style="color: var(--bright-pink);">Blog</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/tammyyang" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/tammyyang/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="postHeader" class="post-header">
+        <h1 class="post-title">用設計思維協助 AI 導入</h1>
+        <div class="post-meta">
+            <div class="post-date">
+                <i class="far fa-calendar-alt"></i>
+                2025年4月15日
+            </div>
+            <div class="post-author">
+                <i class="far fa-user"></i>
+                Tammy Yang
+            </div>
+        </div>
+        <div class="language-toggle">
+            <button class="lang-btn " data-lang="en" 
+                onclick="window.location.href='250415_en.html'">English</button>
+            <button class="lang-btn active" data-lang="zh-tw"
+                onclick="window.location.href='250415_zh-tw.html'">中文</button>
+        </div>
+    </div>
+        
+        <!-- Fallback notice - shown only when language fallback happens -->
+        <div id="fallbackNotice" class="fallback-notice" style="display: none;">
+            <i class="fas fa-info-circle"></i>
+            <span>This post is not available in your selected language. Showing the English version instead.</span>
+        </div>
+        
+        <!-- Featured image container -->
+        <div id="featuredImageContainer"><img src="assets/blog-images/250415.png" alt="用設計思維協助 AI 導入" class="post-featured-img"></div>
+        
+        <div id="postContent" class="post-content"><h1>Design Thinking 與 AI 對話</h1>
+
+<p>在 AI 工具越來越普及的今天，許多團隊開始仰賴它來提升效率、加速創意實現。但我經常看到一種現象：<strong>明明是為了節省時間，卻反而陷入無止境的「重寫」與「不滿意」循環</strong>。</p>
+
+<p>最近，我的一位團隊成員在請 AI 協助撰寫給客戶的信件時，來回試了三次，卻仍然無法讓老闆（也就是我）點頭。AI 都是同一個，你用 OpenAI o3，我也用 OpenAI o3，因此，這不是 AI 的問題，而是「思考模式」的問題。</p>
+
+<p>我通常建議成員套用 <strong>Design Thinking（設計思維</strong> 五步驟來重新檢視問題，Design Thinking 是產品設計很常見的流程，但其實它不只可以應用在產品開發，也可以成為你與 AI 溝通、解決模糊問題的強大框架喔。</p>
+
+<p>---</p>
+
+<h2>Step 1：Empathise（同理）– 了解你並不是終端使用者</h2>
+
+<p>首先，以上述的範例來說，當 AI 無法給出你預期結果時，我們需要退一步先思考「這封信是給誰看的？」</p>
+
+<p>假設最後的結果需要我這位 founder 點頭 ，那就要思考我關注什麼——品牌語氣是否一致？邏輯是否清楚？是否符合公司的商業利益？  如果最終信件要傳遞給客戶，則要思考：這封信能否讓對方感受到專業與尊重？能否讓他們願意回覆？</p>
+
+<p>在開始動手寫信之前，更重要的問題是：我是否確實了解接收者的需求？若無法確實跳脫框架、站在別人的角度去釐清真實的需求，則無論是人或者 AI，都沒有辦法精準定義問題。</p>
+
+<strong>建議行動</strong>：跳出「我要做什麼」的框架，思考「如果是某某人，他希望接收到什麼」，重視具體回饋。
+
+<p>---</p>
+
+<h2>Step 2：Define（定義）– 把問題講對才有解法</h2>
+
+<p>在透過同理步驟收集資訊以後，下一個關鍵就是，這些資訊是否已經傳遞給 AI 了？</p>
+
+<p>設計思維要求我們要明確定義，而這個定義就應該展現在與 AI 的對話當中，例如：</p>
+
+<p>> 幫我寫一封信給客戶</p>
+
+<p>對比</p>
+
+<p>> 幫我寫一封信給客戶，我的客戶是注重專業、著作權與隱私的英國設計師，我希望讓他知道在這一階段合作當中，他需要確實提供我必要的資訊，這樣我們才能共同創造價值。這封信會由我老闆審閱，我老闆通常喜歡簡單、精準的溝通</p>
+
+<p>兩者絕對會有相當不同的 AI 產出。</p>
+
+<p>問題講對了，才知道該從哪裡調整 prompt 或補充 context。
+有時候面對更複雜的人事情境，我們甚至需要多設立一組 AI 對話，來協助產出精確的 Prompt。</p>
+
+<strong>建議行動</strong>：比起丟給 AI 模糊的需求，在 Prompt 當中精確定義角色與需求。
+
+<p>---</p>
+
+<h2>Step 3：Ideate（發想）– AI 也需要創意</h2>
+
+<p>比起直線的產出，一個 task 對應一個 solution，我們往往是在與同事的對談中產生出更好的想法。</p>
+
+<p>現在，把 AI 當成你的同事，它也需要一些建議、一些創意，來共同產出更好的結果。
+試試看用開放性的對話，在開始任務以前，與 AI 討論策略。</p>
+
+<p>用這樣的 Prompt：你認為這封信最重要的是什麼呢？
+讓 AI 有與你一起腦力激盪，產生更好的創意，或許會有意料之外的發展喔。</p>
+
+<strong>建議行動</strong>：在把任務指派給 AI 以前、或者在任務不順利的時候，重新與 AI 一起進行規劃。
+
+<p>
+---</p>
+
+<h2>Step 4：Prototype（原型）– 快速做出草稿，不要求完美</h2>
+
+<p>AI 最大的優勢在於速度，無論是寫文件、寫程式，絕對都是洋洋灑灑。</p>
+
+<p>因此，比起讓 AI 一次產出一個結果，你可以嘗試同時產出多個結果，例如，試試看請 AI </p>
+
+<p>> 產出三個語氣版本的信件（正式、親切、精簡）</p>
+
+<p>再進行比較與修正。</p>
+
+<strong>建議行動</strong>：比起預期 AI 一次到位，改為快速產生多組「原型」，並收集回饋讓 AI 修正。
+
+<p>---</p>
+
+<h2>Step 5：Test（測試）– 拿回饋當下一次 prompt 的素材</h2>
+
+<p>在 AI 快速產生多組原型後，經過你自己的思考與沉澱，選出適合的候選者（可能有多組），並請老闆或同事回饋。</p>
+
+<p>記得，這不是在交作業，所以沒有絕對的好或不好，因此，你應該避免詢問</p>
+
+<p>> 你覺得哪個比較好？</p>
+
+<p>而是改成提問：</p>
+
+<p>> 你認為哪一封信、哪一種語氣比較能達成我們預期的效果？為什麼？</p>
+
+<p>身為優秀的人類，你當然也應該在提問的最後加入你的想法</p>
+
+<p>> 我認為 XX 比較好，因為...</p>
+
+<p>讓你的人類同事更能精準地提供你需要的答案，最後再把回饋交給 AI，產出最終的結果。</p>
+
+<strong>建議行動</strong>：AI 產出、人類回饋。
+
+<p>---</p>
+
+<h2>結語：AI 沒有寫不好，是我們沒問好</h2>
+
+<p>透過以上的五步驟來調整與 AI 的對話，你會發現——<strong>你不是呆板地輸入需求、等待 AI產出，而是在進化你的 Prompt 設計能力</strong>。</p>
+
+<p>生活與工作是多元且豐富的，有很多小細節只有身為人類且擁有情緒的你能了解。 
+AI 不懂你老闆的風格、也不知道你對品牌語氣的偏好，它只能根據輸入的 prompt 回應。</p>
+
+<p>但透過設計思維，你可以設計出更好的 prompt，這也是為什麼，我很強調團隊應該用 Design Thinking 來與 AI 對話。</p>
+
+<strong>設計思維不是為了讓你更快完成任務，而是幫你問對問題，創造出真正有價值的結果。</strong>
+
+<p>這才是一位 AI 時代知識工作者應具備的能力。</p>
+
+<p></p></div>
+        
+        <div class="post-navigation">
+            <a href="blog.html" class="nav-link">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+            
+            <!-- Share links -->
+            <div>
+                <a href="#" onclick="shareOnTwitter()" class="nav-link" style="margin-left: 15px;">
+                    <i class="fab fa-twitter"></i> Share on Twitter
+                </a>
+                <a href="#" onclick="shareOnLinkedIn()" class="nav-link" style="margin-left: 15px;">
+                    <i class="fab fa-linkedin"></i> Share on LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">Tammy Yang | Data Scientist & Entrepreneur</p>
+            <div class="footer-links">
+                <a href="index.html#work" class="footer-link">Work</a>
+                <a href="index.html#education" class="footer-link">Education</a>
+                <a href="index.html#projects" class="footer-link">Projects</a>
+                <a href="index.html#research" class="footer-link">Research</a>
+                <a href="index.html#contact" class="footer-link">Contact</a>
+                <a href="blog.html" class="footer-link">Blog</a>
+            </div>
+            <p class="copyright">© 2025 Tammy Yang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+
+    <script>
+    function shareOnTwitter() {
+        const title = encodeURIComponent(document.title);
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://twitter.com/intent/tweet?text=${title}&url=${url}`, '_blank');
+    }
+    
+    function shareOnLinkedIn() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    }
+    </script>
+    </body>
+</html>

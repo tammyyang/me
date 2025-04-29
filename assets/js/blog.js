@@ -1,7 +1,7 @@
 /**
  * Blog System for Tammy Yang's Personal Website
  * Handles blog listing page functionality including:
- * - Loading blog posts from markdown files
+ * - Loading blog posts from static HTML files
  * - Rendering blog post cards
  * - Language switching with fallback to English
  */
@@ -9,6 +9,7 @@
 // Configuration
 const config = {
     blogPath: 'blogs',
+    htmlBlogPath: 'html_blogs',
     languages: ['en', 'zh-tw'],
     defaultLang: 'en',
     postsPerPage: 10
@@ -26,6 +27,7 @@ const availablePosts = {
         {
             slug: '250415',
             fileName: '250415.md',
+            htmlFileName: '250415_en.html',
             language: 'en'
         }
     ],
@@ -33,6 +35,7 @@ const availablePosts = {
         {
             slug: '250415',
             fileName: '250415.md',
+            htmlFileName: '250415_zh-tw.html',
             language: 'zh-tw'
         }
     ]
@@ -142,11 +145,14 @@ async function fetchBlogPosts(language) {
         const postsWithData = await Promise.all(
             posts.map(async post => {
                 try {
+                    // Try to fetch post data from the markdown file first for metadata
+                    // This is needed for post cards (title, summary, etc.)
                     const postData = await fetchPostData(`${config.blogPath}/${language}/${post.fileName}`);
                     if (postData) {
                         return {
                             ...postData,
-                            ...post
+                            ...post,
+                            htmlFile: `${config.htmlBlogPath}/${post.slug}_${language}.html`
                         };
                     }
                     return null;
@@ -270,6 +276,7 @@ function createBlogPostCard(post) {
     // Default image if not specified
     const imageUrl = post.image || 'assets/tammy-logo.png';
     
+    // Use the static HTML file instead of passing slug and lang parameters
     card.innerHTML = `
         <div class="blog-img" style="background-image: url('${imageUrl}')">
             <span class="blog-tag">${primaryTag}</span>
@@ -278,7 +285,7 @@ function createBlogPostCard(post) {
             <div class="blog-date">${formattedDate}</div>
             <h3 class="blog-card-title">${post.title}</h3>
             <p class="blog-excerpt">${post.summary}</p>
-            <a href="blog-post.html?slug=${post.slug}&lang=${post.language}" class="blog-read-more">Read more</a>
+            <a href="${post.htmlFile}" class="blog-read-more">Read more</a>
         </div>
     `;
     
