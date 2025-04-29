@@ -133,6 +133,9 @@ async function loadBlogPost(slug) {
         
         // Update page title and meta tags
         updateMetaTags(post);
+        
+        // Re-attach event listeners to language buttons after rendering
+        setupLanguageToggle(slug);
     } catch (error) {
         console.error('Error loading blog post:', error);
         showErrorMessage('Error loading blog post');
