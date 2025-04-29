@@ -8,7 +8,6 @@
 
 // Configuration
 const config = {
-    blogPath: 'blogs',
     htmlBlogPath: 'html_blogs',
     languages: ['en', 'zh-tw'],
     defaultLang: 'en',
@@ -26,7 +25,6 @@ const availablePosts = {
     'en': [
         {
             slug: '250415',
-            fileName: '250415.md',
             htmlFileName: '250415_en.html',
             language: 'en'
         }
@@ -34,7 +32,6 @@ const availablePosts = {
     'zh-tw': [
         {
             slug: '250415',
-            fileName: '250415.md',
             htmlFileName: '250415_zh-tw.html',
             language: 'zh-tw'
         }
@@ -141,13 +138,12 @@ async function fetchBlogPosts(language) {
         // Get posts from the hardcoded list for the specified language
         const posts = availablePosts[language] || [];
         
-        // For each post, fetch and parse the front matter
+        // For each post, fetch metadata from the HTML files
         const postsWithData = await Promise.all(
             posts.map(async post => {
                 try {
-                    // Try to fetch post data from the markdown file first for metadata
-                    // This is needed for post cards (title, summary, etc.)
-                    const postData = await fetchPostData(`${config.blogPath}/${language}/${post.fileName}`);
+                    // Extract metadata directly from the HTML file
+                    const postData = await fetchPostMetadataFromHTML(`${config.htmlBlogPath}/${post.htmlFileName}`);
                     if (postData) {
                         return {
                             ...postData,
@@ -157,7 +153,7 @@ async function fetchBlogPosts(language) {
                     }
                     return null;
                 } catch (error) {
-                    console.error(`Error fetching post ${post.fileName}:`, error);
+                    console.error(`Error fetching post ${post.htmlFileName}:`, error);
                     return null;
                 }
             })
@@ -171,17 +167,32 @@ async function fetchBlogPosts(language) {
 }
 
 /**
- * Fetch and parse a blog post to extract front matter metadata
+ * Fetch and extract metadata from an HTML blog post
  */
-async function fetchPostData(filePath) {
+async function fetchPostMetadataFromHTML(filePath) {
     try {
         const response = await fetch(filePath);
         if (!response.ok) {
             throw new Error(`Failed to fetch post: ${filePath}`);
         }
         
-        const markdown = await response.text();
-        return parsePostFrontMatter(markdown, filePath);
+        const html = await response.text();
+        
+        // Create a temporary element to parse the HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        
+        // Extract metadata from the HTML
+        const metadata = {
+            title: extractTitle(tempDiv),
+            date: extractDate(tempDiv),
+            author: extractAuthor(tempDiv),
+            summary: extractSummary(tempDiv),
+            image: extractImage(tempDiv),
+            tags: extractTags(tempDiv)
+        };
+        
+        return metadata;
     } catch (error) {
         console.error(`Error fetching post data from ${filePath}:`, error);
         return null;
@@ -189,51 +200,119 @@ async function fetchPostData(filePath) {
 }
 
 /**
- * Parse front matter from a markdown post
+ * Extract title from HTML
  */
-function parsePostFrontMatter(markdown, filePath) {
-    // Check for YAML front matter (between --- markers)
-    const frontMatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
-    const match = markdown.match(frontMatterRegex);
+function extractTitle(htmlElement) {
+    // Try to get it from the post-title element
+    const titleElement = htmlElement.querySelector('.post-title');
+    if (titleElement) return titleElement.textContent.trim();
     
-    if (!match) {
-        console.error(`No front matter found in ${filePath}`);
-        return {
-            title: 'Untitled Post',
-            date: new Date().toISOString().split('T')[0],
-            summary: 'No summary available',
-            image: '',
-            content: markdown
-        };
+    // Fallback to meta tags
+    const metaTitle = htmlElement.querySelector('meta[property="og:title"]');
+    if (metaTitle) {
+        const title = metaTitle.getAttribute('content');
+        return title.replace(' | Tammy Yang Blog', '');
     }
     
-    const frontMatter = match[1];
-    const content = markdown.slice(match[0].length);
+    // Final fallback to document title
+    const titleTag = htmlElement.querySelector('title');
+    if (titleTag) {
+        return titleTag.textContent.replace(' | Tammy Yang Blog', '');
+    }
     
-    // Parse YAML front matter
-    const metadata = {};
-    const lines = frontMatter.split('\n');
-    lines.forEach(line => {
-        const [key, ...valueParts] = line.split(':');
-        if (key && valueParts.length) {
-            const value = valueParts.join(':').trim();
-            // Handle array values like tags: [item1, item2]
-            if (value.startsWith('[') && value.endsWith(']')) {
-                metadata[key.trim()] = value
-                    .slice(1, -1)
-                    .split(',')
-                    .map(item => item.trim());
+    return 'Untitled Post';
+}
+
+/**
+ * Extract date from HTML
+ */
+function extractDate(htmlElement) {
+    const dateElement = htmlElement.querySelector('.post-date');
+    if (dateElement) {
+        const dateText = dateElement.textContent.trim();
+        // Try to convert the formatted date back to ISO format
+        try {
+            // Different formats based on language
+            if (dateText.includes('年')) {
+                // Chinese format
+                const match = dateText.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (match) {
+                    const [_, year, month, day] = match;
+                    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+                }
             } else {
-                metadata[key.trim()] = value;
+                // English format - e.g., "April 15, 2025"
+                const date = new Date(dateText);
+                if (!isNaN(date.getTime())) {
+                    return date.toISOString().split('T')[0];
+                }
             }
+        } catch (e) {
+            console.error('Error parsing date:', e);
         }
-    });
+    }
     
-    return {
-        ...metadata,
-        content: content,
-        slug: filePath.split('/').pop().replace('.md', '')
-    };
+    // Fallback to current date
+    return new Date().toISOString().split('T')[0];
+}
+
+/**
+ * Extract author from HTML
+ */
+function extractAuthor(htmlElement) {
+    const authorElement = htmlElement.querySelector('.post-author');
+    if (authorElement) {
+        return authorElement.textContent.trim().replace('Tammy Yang', '').trim() || 'Tammy Yang';
+    }
+    return 'Tammy Yang';
+}
+
+/**
+ * Extract summary from HTML
+ */
+function extractSummary(htmlElement) {
+    // Try to get from meta tags
+    const metaSummary = htmlElement.querySelector('meta[property="og:description"], meta[name="twitter:description"]');
+    if (metaSummary) {
+        return metaSummary.getAttribute('content');
+    }
+    
+    // Try to get from first paragraph
+    const firstParagraph = htmlElement.querySelector('.post-content p');
+    if (firstParagraph) {
+        const text = firstParagraph.textContent.trim();
+        return text.length > 150 ? text.substring(0, 147) + '...' : text;
+    }
+    
+    return 'No summary available';
+}
+
+/**
+ * Extract image from HTML
+ */
+function extractImage(htmlElement) {
+    // Try to get from featured image
+    const featuredImage = htmlElement.querySelector('.post-featured-img');
+    if (featuredImage) {
+        return featuredImage.getAttribute('src');
+    }
+    
+    // Try to get from meta tags
+    const metaImage = htmlElement.querySelector('meta[property="og:image"], meta[name="twitter:image"]');
+    if (metaImage) {
+        return metaImage.getAttribute('content');
+    }
+    
+    return '';
+}
+
+/**
+ * Extract tags from HTML
+ */
+function extractTags(htmlElement) {
+    // We don't have visible tags in the HTML currently, but could add later
+    // For now, just return a default tag
+    return ['Blog'];
 }
 
 /**
