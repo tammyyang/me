@@ -70,12 +70,38 @@
             color: var(--bright-pink);
             letter-spacing: 1px;
         }
-        
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            margin-left: 15px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
         .menu {
             display: flex;
             gap: 30px;
         }
-        
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none !important;
+            }
+        }
+
         .menu-item {
             color: var(--white);
             text-decoration: none;
@@ -237,7 +263,6 @@
             display: inline-flex;
             align-items: center;
             padding: 12px 30px; /* Match the padding of the .btn class */
-            margin-left: 15px;
             background-color: var(--black);
             color: var(--white);
             border: 1px solid var(--bright-pink);
@@ -256,6 +281,8 @@
         .hero-content .button-container {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .play-btn:hover {
@@ -541,17 +568,43 @@
                 display: none;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
+            .menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--black);
+                flex-direction: column;
+                gap: 0;
+                padding: 20px 0;
+                transition: left 0.3s ease;
+                z-index: 99;
+            }
+
+            .menu.active {
+                left: 0;
+            }
+
+            .menu-item {
+                padding: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav {
+                justify-content: space-between;
+            }
+
             .menu {
                 display: none;
             }
 
-            nav {
-                justify-content: center;
-            }
-
-            .social-icons {
-                position: absolute;
-                left: 20px;
+            .menu.active {
+                display: flex;
             }
 
             .timeline::before {
@@ -584,7 +637,7 @@
         <div class="container">
             <nav>
                 <div class="logo">TY</div>
-                <div class="menu">
+                <div class="menu" id="menu">
                     <a href="#work" class="menu-item">Work & Startup</a>
                     <a href="#education" class="menu-item">Education</a>
                     <a href="#endorsements" class="menu-item">Endorsements</a>
@@ -592,9 +645,16 @@
                     <a href="#projects" class="menu-item">ML/Data Projects</a>
                     <a href="blog.html" class="menu-item">Blog</a>
                 </div>
-                <div class="social-icons">
-                    <a href="https://github.com/tammyyang" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/tammyyang/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <div class="nav-right">
+                    <div class="social-icons">
+                        <a href="https://github.com/tammyyang" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/tammyyang/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -607,6 +667,7 @@
                 <h2 class="job-title">Data Scientist, Innovator, and Problem Solver</h2>
                 <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning and Data Analysis. Serial entrepreneur and tech leader building AI solutions for content provenance.</p>
                 <div class="button-container">
+                    <a href="#work" class="btn">Explore</a>
                     <button id="voiceBtn" class="play-btn" aria-label="Play audio introduction">
                         <i class="fas fa-play"></i> <span id="btnText">Listen My Intro</span>
                     </button>
@@ -1387,14 +1448,29 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu toggle
+            const hamburger = document.getElementById('hamburger');
+            const menu = document.getElementById('menu');
+
+            hamburger.addEventListener('click', function() {
+                menu.classList.toggle('active');
+            });
+
+            // Close menu when clicking a menu item
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    menu.classList.remove('active');
+                });
+            });
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
+
                     if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 70,
