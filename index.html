@@ -7,9 +7,6 @@
     <link rel="icon" href="assets/tammy-logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- WebBrain -->
-    <script src="https://dist.webbrain.app/webbrain-widget.min.js"></script>
-
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://github.com/tammyyang/me">
@@ -520,32 +517,11 @@
             color: #999;
         }
         
-        /* SVG styling to align with brand colors - ONLY for site icons */
-        svg:not(.web-brain-google-login-button svg) {
+        /* SVG styling to align with brand colors */
+        svg {
             fill: var(--bright-pink);
         }
-        
-        /* Preserve Google logo styling exactly as defined in the SVG */
-        .web-brain-google-login-button svg path[fill="#EA4335"] {
-            fill: #EA4335 !important;
-        }
-        
-        .web-brain-google-login-button svg path[fill="#4285F4"] {
-            fill: #4285F4 !important;
-        }
-        
-        .web-brain-google-login-button svg path[fill="#FBBC05"] {
-            fill: #FBBC05 !important;
-        }
-        
-        .web-brain-google-login-button svg path[fill="#34A853"] {
-            fill: #34A853 !important;
-        }
-        
-        .web-brain-google-login-button svg path[fill="none"] {
-            fill: transparent !important;
-        }
-        
+
         @media (max-width: 768px) {
             * {
                 max-width: 100vw !important;
@@ -600,27 +576,6 @@
             .project-grid {
                 grid-template-columns: 1fr;
             }
-
-            /* Fix WebBrain widget on mobile */
-            .web-brain-widget-button {
-                bottom: 20px !important;
-                right: 20px !important;
-                z-index: 99 !important;
-            }
-
-            .web-brain-chat-column,
-            .web-brain-widget,
-            .web-brain-widget *,
-            [class*="web-brain"],
-            [id*="web-brain"] {
-                max-width: 100vw !important;
-            }
-
-            .web-brain-chat-column {
-                right: 0 !important;
-                left: 0 !important;
-                width: 100vw !important;
-            }
         }
     </style>
 </head>
@@ -652,7 +607,6 @@
                 <h2 class="job-title">Data Scientist, Innovator, and Problem Solver</h2>
                 <p class="hero-bio">Particle Physics PhD with strong expertise in Machine Learning and Data Analysis. Serial entrepreneur and tech leader building AI solutions for content provenance.</p>
                 <div class="button-container">
-                    <a href="#" class="btn" id="askAiBtn">Ask AI</a>
                     <button id="voiceBtn" class="play-btn" aria-label="Play audio introduction">
                         <i class="fas fa-play"></i> <span id="btnText">Listen My Intro</span>
                     </button>
@@ -1570,13 +1524,6 @@
                 if (newIndex > maxIndex) newIndex = 0;
                 showTestimonial(newIndex);
             }, 10000); // Change every 10 seconds
-
-            // WebBrain Ask AI button functionality
-            const askAiBtn = document.getElementById('askAiBtn');
-            askAiBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                WebBrain.open();
-            });
         });
 
         // Tab switching function for publications and conferences
@@ -1660,36 +1607,7 @@
                 icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
             }
         }
-        
-    </script>
 
-    <!-- WebBrain -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            WebBrain.init({
-                userId: "CtQkcdhSNLUPYOYcX8yMOuE5S7o2", // Replace with your actual user ID
-                requireLogin: false,
-                brandColor: "#FFFFFF",
-                welcomeMessage: "Hello! What do you want to know about Tammy Yang?",
-                theme: "dark"
-            });
-            
-            // Additional styling for WebBrain elements that might be injected after initialization
-            const style = document.createElement('style');
-            style.textContent = `
-                .web-brain-widget button,
-                .web-brain-widget .primary-button,
-                .web-brain-widget .highlighted {
-                    background-color: #FF1694 !important;
-                    border-color: #FF1694 !important;
-                }
-                .web-brain-widget a,
-                .web-brain-widget .link {
-                    color: #FF1694 !important;
-                }
-            `;
-            document.head.appendChild(style);
-        });
     </script>
 </body>
 </html>
